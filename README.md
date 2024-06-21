@@ -1,9 +1,9 @@
 # Student Management System
 
-![Login](assets/images/1.png)
-![Register](assets/images/2.png)
-![Student List](assets/images/3.png)
-![Student Form](assets/images/4.png)
+![Login](assets/images/1.PNG)
+![Register](assets/images/2.PNG)
+![Student List](assets/images/3.PNG)
+![Student Form](assets/images/4.PNG)
 
 A comprehensive Student Management System built with Angular for the frontend and NestJS for the backend, using MySQL as the database.
 
