@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+:host {
+    display: block;
+
+  }
+  
+  .modal {
+    z-index: 1080 !important; 
+  }
+  
+  .modal-backdrop {
+    z-index: 1000 !important; 
+
+  }
+  

@@ -1,0 +1,109 @@
+<div class="container mt-4">
+  <img src="../../../assets/ULTATEL-logo.png" alt="Logo" class="img-fluid" style="max-width: 250px">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h2>Student List</h2>
+    <button class="btn btn-primary" (click)="openAddStudentModal()">Add Student</button>
+  </div>
+
+ <!-- Search Section -->
+<div class="card mb-4">
+  <div class="card-header">Search Students</div>
+  <div class="card-body">
+    <form (ngSubmit)="onSearch()">
+      <div class="row">
+        <div class="col-md-3 mb-3">
+          <div class="form-group">
+            <label for="searchName">Name</label>
+            <input id="searchName" [(ngModel)]="searchName" name="searchName" class="form-control">
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="form-group">
+            <label for="searchAgeFrom">Age</label>
+            <div class="d-flex align-items-center">
+              <input id="searchAgeFrom" [(ngModel)]="searchAgeFrom" name="searchAgeFrom" class="form-control mr-2">
+              <label class="mr-2 mb-0">to</label>
+              <input id="searchAgeTo" [(ngModel)]="searchAgeTo" name="searchAgeTo" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="form-group">
+            <label for="searchCountry">Country</label>
+            <input id="searchCountry" [(ngModel)]="searchCountry" name="searchCountry" class="form-control">
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="form-group">
+            <label for="searchGender">Gender</label>
+            <select id="searchGender" [(ngModel)]="searchGender" name="searchGender" class="form-control">
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary mr-2">Search</button>
+          <button type="button" class="btn btn-secondary" (click)="onReset()">Reset</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+  <!-- List Section -->
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <div>
+        <label for="itemsPerPage">Show entries:</label>
+        <select id="itemsPerPage" class="form-control d-inline-block w-auto ml-2" [(ngModel)]="itemsPerPage">
+          <option *ngFor="let count of [10, 25, 50, 100]" [value]="count">{{ count }}</option>
+        </select>
+      </div>
+      <pagination-controls (pageChange)="page = $event" class="d-inline-block"></pagination-controls>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped m-0">
+          <thead class="thead-dark">
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Gender</th>
+              <th>Birthdate</th>
+              <th>Country</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of students | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
+              <td>{{ student.firstName }}</td>
+              <td>{{ student.lastName }}</td>
+              <td>{{ student.email }}</td>
+              <td>{{ student.gender }}</td>
+              <td>{{ student.birthdate }}</td>
+              <td>{{ student.country }}</td>
+              <td>
+                <div class="btn-group" role="group">
+                  <button class="btn btn-info btn-sm" (click)="onShowMore(student)">Show More</button>
+                  <button class="btn btn-warning btn-sm" (click)="openEditStudentModal(student)">Edit</button>
+                  <button class="btn btn-danger btn-sm" (click)="onDelete(student)">Delete</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card-footer d-flex justify-content-end">
+      <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<app-auth-layout>
+  <h2 class="text-center mb-4">Register</h2>
+  <form (ngSubmit)="onRegister()">
+    <div class="form-group">
+      <label for="fullName">Full Name</label>
+      <input type="text" class="form-control" id="fullName" [(ngModel)]="fullName" name="fullName" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <div class="input-group">
+        <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" id="password" [(ngModel)]="password" name="password" required>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
+            <i class="fas" [ngClass]="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
+          </button>
+        </div>
+      </div>
+      <small [ngClass]="passwordStrengthColor">{{ passwordStrengthMessage }}</small>
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <div class="input-group">
+        <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
+            <i class="fas" [ngClass]="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Register</button>
+  </form>
+  <p class="text-center mt-3">Already have an account? <a routerLink="/login">Login here</a></p>
+</app-auth-layout>
